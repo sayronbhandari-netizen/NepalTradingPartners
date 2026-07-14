@@ -9,27 +9,25 @@
 <h2>Admin Login</h2>
 
 <input id="password" type="password" placeholder="Enter password">
+
 <button onclick="login()">Login</button>
 
 <script>
-function login(){
-    let password = document.getElementById("password").value;
-{<script>
 function login(){
 
     let password = document.getElementById("password").value;
 
     fetch("https://nepaltradingpartners-backend.onrender.com/admin-login", {
-        method:"POST",
-        headers:{
-            "Content-Type":"application/json"
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
         },
-        body:JSON.stringify({
+        body: JSON.stringify({
             password: password
         })
     })
-    .then(res=>res.json())
-    .then(data=>{
+    .then(response => response.json())
+    .then(data => {
 
         if(data.success){
             localStorage.setItem("admin","true");
@@ -39,11 +37,12 @@ function login(){
             alert("Wrong password");
         }
 
+    })
+    .catch(error => {
+        alert("Server error");
+        console.log(error);
     });
 
-}
-</script>
-    
 }
 </script>
 
