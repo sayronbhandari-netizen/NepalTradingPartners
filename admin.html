@@ -20,7 +20,11 @@ Loading users...
 </div>
 
 <script>
-fetch("https://nepaltradingpartners-backend.onrender.com/users")
+fetch("https://nepaltradingpartners-backend.onrender.com/users", {
+    headers: {
+        "admin-password": "Masarojho"
+    }
+})
 .then(res => res.json())
 .then(data => {
     let html = "";
