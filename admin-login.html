@@ -5,7 +5,11 @@
 </head>
 
 <body>
-
+<script>
+if(localStorage.getItem("admin") !== "true"){
+    window.location.href="admin-login.html";
+}
+</script>
 <h2>Admin Login</h2>
 
 <input id="password" type="password" placeholder="Enter password">
