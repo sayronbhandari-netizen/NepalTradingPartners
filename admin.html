@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>Admin Dashboard</h1>
+
+<div id="users">
+Loading users...
+</div>
+
+<script>
+fetch("https://nepaltradingpartners-backend.onrender.com/users")
+.then(res => res.json())
+.then(data => {
+    let html = "";
+
+    data.forEach(user => {
+        html += `
+        <div>
+        <h3>${user.name}</h3>
+        <p>Country: ${user.country}</p>
+        <p>WhatsApp: ${user.whatsapp}</p>
+        <p>Interest: ${user.interest}</p>
+        <hr>
+        </div>`;
+    });
+
+    document.getElementById("users").innerHTML = html;
+});
+</script>
+
+</body>
+</html>
