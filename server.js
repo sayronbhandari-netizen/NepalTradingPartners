@@ -22,30 +22,38 @@ app.post("/register", async (req, res) => {
     try {
         const user = new User(req.body);
         await user.save();
-        res.json({message:"Registration successful"});
-    } catch {
-        res.status(500).json({message:"Error"});
+        res.json({ message: "Registration successful" });
+    } catch (err) {
+        res.status(500).json({ message: "Error" });
     }
 });
 
-app.get("/", (req,res)=>{
+app.get("/", (req, res) => {
     res.send("Nepal Trading Investment Partners Server Running");
 });
-app.get("/users", async (req,res)=>{
-    const users = await User.find();
-    res.json(users);
-app.post("/admin-login", (req,res)=>{
-    const {password} = req.body;
+
+app.get("/users", async (req, res) => {
+    try {
+        const users = await User.find();
+        res.json(users);
+    } catch (err) {
+        res.status(500).json({ message: "Error fetching users" });
+    }
+});
+
+app.post("/admin-login", (req, res) => {
+    const { password } = req.body;
 
     console.log("Password entered:", password);
     console.log("Environment password:", process.env.ADMIN_PASSWORD);
 
-    if(password === process.env.ADMIN_PASSWORD){
-        res.json({success:true});
+    if (password === process.env.ADMIN_PASSWORD) {
+        res.json({ success: true });
     } else {
-        res.json({success:false});
+        res.json({ success: false });
     }
 });
-app.listen(3000, ()=>{
+
+app.listen(3000, () => {
     console.log("Server running");
 });
