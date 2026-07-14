@@ -14,14 +14,36 @@
 <script>
 function login(){
     let password = document.getElementById("password").value;
+{<script>
+function login(){
 
-    if(password === "ladonakhahai"){
-        localStorage.setItem("admin","true");
-        window.location.href="admin.html";
-    }
-    else{
-        alert("Wrong password");
-    }
+    let password = document.getElementById("password").value;
+
+    fetch("https://nepaltradingpartners-backend.onrender.com/admin-login", {
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+            password: password
+        })
+    })
+    .then(res=>res.json())
+    .then(data=>{
+
+        if(data.success){
+            localStorage.setItem("admin","true");
+            window.location.href="admin.html";
+        }
+        else{
+            alert("Wrong password");
+        }
+
+    });
+
+}
+</script>
+    
 }
 </script>
 
