@@ -7,6 +7,12 @@
 
 <body>
 
+<script>
+if(localStorage.getItem("admin") !== "true"){
+    window.location.href="admin-login.html";
+}
+</script>
+
 <h1>Admin Dashboard</h1>
 
 <div id="users">
