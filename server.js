@@ -34,6 +34,14 @@ app.get("/", (req,res)=>{
 app.get("/users", async (req,res)=>{
     const users = await User.find();
     res.json(users);
+});app.post("/admin-login", (req,res)=>{
+    const {password} = req.body;
+
+    if(password === process.env.ADMIN_PASSWORD){
+        res.json({success:true});
+    } else {
+        res.json({success:false});
+    }
 });
 app.listen(3000, ()=>{
     console.log("Server running");
