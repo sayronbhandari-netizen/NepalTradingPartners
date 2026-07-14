@@ -29,10 +29,11 @@ function login(){
     .then(response => response.json())
     .then(data => {
 
-        if(data.success){
-            localStorage.setItem("admin","true");
-            window.location.href="admin.html";
-        }
+if(data.success){
+    localStorage.setItem("admin","true");
+    localStorage.setItem("adminPassword", password);
+    window.location.href="admin.html";
+}
         else{
             alert("Wrong password");
         }
