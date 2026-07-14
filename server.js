@@ -34,8 +34,11 @@ app.get("/", (req,res)=>{
 app.get("/users", async (req,res)=>{
     const users = await User.find();
     res.json(users);
-});app.post("/admin-login", (req,res)=>{
+app.post("/admin-login", (req,res)=>{
     const {password} = req.body;
+
+    console.log("Password entered:", password);
+    console.log("Environment password:", process.env.ADMIN_PASSWORD);
 
     if(password === process.env.ADMIN_PASSWORD){
         res.json({success:true});
