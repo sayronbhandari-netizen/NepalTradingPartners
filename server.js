@@ -32,12 +32,18 @@ app.get("/", (req, res) => {
     res.send("Nepal Trading Investment Partners Server Running");
 });
 
-app.get("/users", async (req, res) => {
+app.get("/users", async (req,res)=>{
+    const adminKey = req.headers["admin-password"];
+
+    if(adminKey !== process.env.ADMIN_PASSWORD){
+        return res.status(401).json({message:"Unauthorized"});
+    }
+
     try {
         const users = await User.find();
         res.json(users);
     } catch (err) {
-        res.status(500).json({ message: "Error fetching users" });
+        res.status(500).json({message:"Error fetching users"});
     }
 });
 
