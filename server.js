@@ -31,7 +31,10 @@ app.post("/register", async (req, res) => {
 app.get("/", (req,res)=>{
     res.send("Nepal Trading Investment Partners Server Running");
 });
-
+app.get("/users", async (req,res)=>{
+    const users = await User.find();
+    res.json(users);
+});
 app.listen(3000, ()=>{
     console.log("Server running");
 });
